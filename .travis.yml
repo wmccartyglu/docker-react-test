@@ -1,0 +1,10 @@
+sudo: required
+services:
+    - docker
+
+
+befor_install:
+  - docker build -t wmccarty/docker-react-test -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true wmccarty/docker-react-test npm run test -- --coverage
